@@ -1,5 +1,10 @@
 import { DataTypes, Model, ModelAttributes } from "sequelize";
-import { basicModelColumns } from "../utils/constants";
+import { BasicEntity, basicModelColumns } from "../utils/constants";
+
+export interface TypeBankAccountType extends BasicEntity {
+   name: string
+   displayName: string
+}
 
 const BankAccountTypeAtt: ModelAttributes = {
    ...basicModelColumns,

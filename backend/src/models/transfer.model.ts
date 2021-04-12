@@ -1,10 +1,14 @@
 import { DataTypes, Model, ModelAttributes } from "sequelize";
-import { basicModelColumns } from "../utils/constants";
+import { BasicEntity, basicModelColumns } from "../utils/constants";
+
+export interface TypeTransfer extends BasicEntity {
+   amount: number
+}
 
 const TransferAtt: ModelAttributes = {
    ...basicModelColumns,
    amount: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL,
       allowNull: false
    }
 }
