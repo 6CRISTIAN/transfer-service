@@ -10,7 +10,8 @@ const BankAccountTypeAtt: ModelAttributes = {
    ...basicModelColumns,
    name: {
       type: DataTypes.STRING(69),
-      allowNull: false
+      allowNull: false,
+      unique: true
    },
    displayName: {
       field: 'display_name',

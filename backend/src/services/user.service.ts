@@ -2,7 +2,7 @@ import { TypeUser, User } from '../models/user.model';
 
 export const createUser = async (user: TypeUser): Promise<TypeUser> => {
    const _user = await findUserByEmail(user?.email) || await findUserByRut(user?.rut)
-   return _user ? _user : { alreadyExisted: true, ...User.create(user) }
+   return _user ? _user : { isNewRecord: true, ...((await User.create(user)) as any)?.dataValues }
 }
 
 export const retrieveUserList = async (): Promise<User[]> => User.findAll();

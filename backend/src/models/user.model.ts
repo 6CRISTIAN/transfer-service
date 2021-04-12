@@ -1,10 +1,9 @@
 import { DataTypes, Model, ModelAttributes } from "sequelize";
-import { any } from "sequelize/types/lib/operators";
 import { BasicEntity, basicModelColumns } from "../utils/constants";
 import { BankAccount } from "./bank-account.model";
 
 export interface TypeUser extends BasicEntity {
-   alreadyExisted?: boolean
+   isNewRecord?: boolean
    rut: number
    names: string
    surnames: string

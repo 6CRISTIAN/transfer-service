@@ -5,6 +5,8 @@ import { UserRouter } from './routes/user.routes'
 
 const app: Application = express()
 
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 app.use('/api/recipient', UserRouter)
 
 function startServer(): void {

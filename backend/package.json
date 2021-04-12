@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node dist/app.js",
+    "dev:inspect": "node --inspect dist/app.js",
     "dev": "nodemon src/app.ts",
     "build": "tsc -p .",
     "test": "echo \"Error: no test specified\" && exit 1"
