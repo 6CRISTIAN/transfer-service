@@ -1,0 +1,11 @@
+:host ::ng-deep {
+   mat-tab-group.mat-tab-group  {
+      overflow: hidden !important;
+      border-radius: 0.9rem !important;
+   }
+
+   .mat-tab-label-active {
+      color: #fff;
+      opacity: 1;
+   }
+}
