@@ -12,7 +12,8 @@ export const config = {
       options: {
          host: process.env.DB_HOST || '',
          dialect: 'postgres' as Dialect,
-         port: 5432
+         port: 5432,
+         logging: (sqlData, sequelizeObj) => { console.log(sqlData) }
       } as Options
    }
 }

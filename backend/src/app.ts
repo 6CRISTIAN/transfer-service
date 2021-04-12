@@ -1,6 +1,6 @@
 import express, { Application } from 'express'
 import { config } from './config/config'
-import { dbSequelize } from './database/db.database'
+import { db } from './database/db.database'
 
 const app: Application = express()
 
@@ -10,7 +10,6 @@ function startServer(): void {
    })
 }
 
-
-dbSequelize.authenticate()
+db.sequelize.sync()
    .then(startServer)
    .catch(err => console.error('Server failed to start due to error:', err))
