@@ -18,7 +18,7 @@ app.use('/api/bank-account-type', BankAccountTypeRouter)
 app.use('/api/transfer', TransferRouter)
 
 function startServer(): void {
-   app.listen(config.port, () => {
+   app.listen((config.port as number), '0.0.0.0', () => {
       console.log(`Server running in http://localhost:${config.port}/`)
    })
 }
