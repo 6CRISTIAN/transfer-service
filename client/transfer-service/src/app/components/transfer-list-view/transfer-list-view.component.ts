@@ -1,14 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { TransferView } from 'src/app/shared/models/interface/tranfer.interface';
 
-export interface PeriodicElement {
-  recipientName: string;
-  rut: number;
-  amount: number;
-  accountType: string;
-  bankName: string;
-}
 
-const ELEMENT_DATA: PeriodicElement[] = [
+const ELEMENT_DATA: TransferView[] = [
   { recipientName: 'Hydrogen', rut: 12312312312, bankName: 'H', accountType: 'Cuenta Vista', amount: 1.0079 },
   { recipientName: 'Helium', rut: 12312312312, bankName: 'He', accountType: 'Cuenta Vista', amount: 4.0026 },
   { recipientName: 'Lithium', rut: 12312312312, bankName: 'Li', accountType: 'Cuenta Vista', amount: 6.941 },

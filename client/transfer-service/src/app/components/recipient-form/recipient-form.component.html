@@ -54,8 +54,8 @@
       <input type="text" placeholder="Banco" aria-label="Number" matInput formControlName="bank"
         [matAutocomplete]="auto">
       <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-        <mat-option *ngFor="let option of bankList" [value]="option">
-          {{option}}
+        <mat-option *ngFor="let option of filteredBankList | async" [value]="option.name">
+          {{option.name}}
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
@@ -67,8 +67,8 @@
       <input type="text" placeholder="Tipo" aria-label="Number" matInput formControlName="bankAccountType"
         [matAutocomplete]="auto">
       <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-        <mat-option *ngFor="let option of bankAccountTypeList" [value]="option">
-          {{option}}
+        <mat-option *ngFor="let option of filteredBankAccountTypeList | async" [value]="option.name">
+          {{option.name}}
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>

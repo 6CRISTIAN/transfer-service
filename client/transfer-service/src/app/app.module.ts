@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 /** Material */
 import { MatTabsModule } from '@angular/material/tabs';
+import { ApiService } from './services/api.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,9 +18,10 @@ import { MatTabsModule } from '@angular/material/tabs';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatTabsModule
+    MatTabsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
