@@ -12,11 +12,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
+import { RecipientSelectModalComponent } from './components/recipient-select-modal/recipient-select-modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
   declarations: [
-    TransferFormComponent
+    TransferFormComponent,
+    RecipientSelectModalComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +31,9 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     MatIconModule,
     MatSnackBarModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule,
+    MatProgressSpinnerModule
   ]
 })
 export class TransferFormModule { }

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormHelper } from 'src/app/shared/helper/form.helper';
+import { RecipientSelectModalComponent } from './components/recipient-select-modal/recipient-select-modal.component';
 
 @Component({
   selector: 'app-transfer-form',
@@ -10,11 +12,12 @@ import { FormHelper } from 'src/app/shared/helper/form.helper';
 })
 export class TransferFormComponent extends FormHelper implements OnInit {
 
-  public recipientList: any = []
+
 
   constructor(
     protected snackBar: MatSnackBar,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public dialog: MatDialog
   ) {
     super(snackBar)
     this.initForm()
@@ -22,16 +25,26 @@ export class TransferFormComponent extends FormHelper implements OnInit {
 
   ngOnInit(): void { }
 
-  initForm() {
+  initForm(): void {
     this.form = this.fb.group({
       recipient: ['', Validators.required],
       amount: [0, [Validators.required, Validators.min(1)]]
     })
   }
 
-  submit(formValue?: any) {
+  submit(formValue?: any): void {
     if (this.form.invalid) return
     console.log(this.form.value)
+  }
+
+  goToSelectAccount(): void {
+    const dialogRef = this.dialog.open(RecipientSelectModalComponent, {
+      minWidth: '69rem'
+    })
+
+    dialogRef.afterClosed().subscribe(recipient => {
+      if (recipient) this.setValue('recipient', recipient)
+    })
   }
 
 }

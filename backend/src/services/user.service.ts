@@ -32,7 +32,7 @@ export const findUserByRut = async (rut: number): Promise<User | any> => {
 const includeUserQuery = [{
    model: BankAccount,
    as: 'bankAccountList',
-   attributes: ['id', 'accountNumber'],
+   attributes: ['id', 'accountNumber', 'bank'],
    include: [{
       model: BankAccountType,
       as: 'bankAccountType',

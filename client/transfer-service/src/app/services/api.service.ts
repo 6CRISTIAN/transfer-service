@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/operators';
 import { BasicModel } from '../shared/models/interface/basic-model.interface';
+import { Recipient } from '../shared/models/interface/recipient.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +23,9 @@ export class ApiService {
   getBankAccountTypeList(): Observable<BasicModel[]> {
     return this.http.get<BasicModel[]>('/api/bank-account-type')
       .pipe(map(list => list.map(item => ({ id: item.id, name: item.name }))))
+  }
+
+  getRecipientList(): Observable<Recipient[]> {
+    return this.http.get<Recipient[]>('/api/recipient')
   }
 }
