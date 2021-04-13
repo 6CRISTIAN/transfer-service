@@ -51,9 +51,9 @@ export class User extends Model {
          as: 'bankAccountList',
       })
 
-      BankAccount.belongsTo(BankAccount, {
+      BankAccount.belongsTo(User, {
          foreignKey: 'user_id',
-         as: 'userId',
+         as: 'user',
       })
    }
 }

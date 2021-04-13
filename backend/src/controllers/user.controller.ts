@@ -1,5 +1,5 @@
-import { Request, Response } from "express";
-import { messages } from "../utils/constants";
+import { Request, Response } from "express"
+import { messages } from "../utils/constants"
 import { createUser, retrieveUserList } from '../services/user.service'
 
 export const createRecipient = async (req: Request, res: Response) => {

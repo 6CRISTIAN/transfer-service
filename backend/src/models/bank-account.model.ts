@@ -45,7 +45,7 @@ export class BankAccount extends Model {
 
       Transfer.belongsTo(BankAccount, {
          foreignKey: 'bank_account_id',
-         as: 'bankAccountId'
+         as: 'bankAccount'
       })
    }
 }
