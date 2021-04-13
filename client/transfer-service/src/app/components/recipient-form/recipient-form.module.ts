@@ -25,7 +25,6 @@ import { RecipientFormComponent } from './recipient-form.component';
     CommonModule,
     RecipientFormRoutingModule,
     ReactiveFormsModule,
-    FormsModule,
     MatAutocompleteModule,
     MatFormFieldModule,
     MatInputModule,

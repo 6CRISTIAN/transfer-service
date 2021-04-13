@@ -3,12 +3,16 @@ import { CommonModule } from '@angular/common';
 
 import { TransferListViewRoutingModule } from './transfer-list-view-routing.module';
 
+/** Material */
+import { MatTableModule } from '@angular/material/table';
+import { TransferListViewComponent } from './transfer-list-view.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [TransferListViewComponent],
   imports: [
     CommonModule,
-    TransferListViewRoutingModule
+    TransferListViewRoutingModule,
+    MatTableModule
   ]
 })
 export class TransferListViewModule { }

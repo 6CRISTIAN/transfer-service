@@ -1,4 +1,4 @@
-<nav mat-tab-nav-bar color="primary" backgroundColor="primary" mat-align-tabs="center" class="container-fluid mt-2">
+<nav mat-tab-nav-bar color="primary" backgroundColor="primary" mat-align-tabs="center" class="container-fluid mt-3">
   <ng-container *ngFor="let tab of tabs">
 
     <a mat-tab-link [routerLink]="tab.route" (click)="activeLink = tab.route" [active]="activeLink == tab.route">
