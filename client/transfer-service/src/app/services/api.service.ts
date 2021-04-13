@@ -31,7 +31,7 @@ export class ApiService {
   }
 
   createTransfer(transfer: TransferCreate): Observable<TransferCreate> {
-    return this.http.post<TransferCreate>('/api/recipient', transfer)
+    return this.http.post<TransferCreate>('/api/transfer', transfer)
   }
 
   getTransferList(): Observable<TransferView[]> {
