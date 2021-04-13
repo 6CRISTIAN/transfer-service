@@ -3,7 +3,6 @@ import { BasicEntity, basicModelColumns } from "../utils/constants";
 
 export interface TypeBankAccountType extends BasicEntity {
    name: string
-   displayName: string
 }
 
 const BankAccountTypeAtt: ModelAttributes = {
@@ -12,12 +11,7 @@ const BankAccountTypeAtt: ModelAttributes = {
       type: DataTypes.STRING(69),
       allowNull: false,
       unique: true
-   },
-   displayName: {
-      field: 'display_name',
-      type: DataTypes.STRING(69),
-      allowNull: false
-   },
+   }
 }
 
 export class BankAccountType extends Model {

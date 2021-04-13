@@ -6,6 +6,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { FormHelper } from 'src/app/shared/helper/form.helper';
 import { BasicModel } from 'src/app/shared/models/interface/basic-model.interface';
 import { map, startWith } from 'rxjs/operators';
+import { RecipientService } from 'src/app/services/recipient.service';
 
 @Component({
   selector: 'app-recipient-form',
@@ -14,15 +15,17 @@ import { map, startWith } from 'rxjs/operators';
 })
 export class RecipientFormComponent extends FormHelper implements OnInit {
 
-  public bankList: { banks: BasicModel[] }
+  public bankList: BasicModel[]
   public filteredBankList: Observable<BasicModel[]>
 
   public bankAccountTypeList: BasicModel[] = []
   public filteredBankAccountTypeList: Observable<BasicModel[]>
+  public savingRecipient: boolean;
 
   constructor(
     protected snackBar: MatSnackBar,
     private fb: FormBuilder,
+    private recipientService: RecipientService,
     private apiService: ApiService
   ) {
     super(snackBar)
@@ -31,16 +34,19 @@ export class RecipientFormComponent extends FormHelper implements OnInit {
 
   ngOnInit(): void {
     this.apiService.getBankList().subscribe(data => {
-      this.bankList = data
-    });
+      this.bankList = data.banks
+      this.filteredBankList = this.getFilteredListByControlName('bank', data.banks)
+    }, err => console.error(err))
 
-    this.filteredBankList = this.getFilteredOptionsByControlName('bank')
-    this.filteredBankAccountTypeList = this.getFilteredOptionsByControlName('bankAccountType')
+    this.apiService.getBankAccountTypeList().subscribe(data => {
+      this.bankAccountTypeList = data
+      this.filteredBankAccountTypeList = this.getFilteredListByControlName('bankAccountType', this.bankAccountTypeList)
+    }, err => console.error(err))
   }
 
-  private getFilteredOptionsByControlName(controlName: string): Observable<BasicModel[]> {
-    return this.control(controlName).valueChanges.pipe(
-      startWith(''), map(value => this._filter(value, this.bankAccountTypeList)))
+  private getFilteredListByControlName(controlName: string, listFilter: BasicModel[]): Observable<BasicModel[]> {
+    return this.control(controlName)?.valueChanges.pipe(
+      startWith(''), map(value => this._filter(value, listFilter)))
   }
 
   private _filter(value: string, options: BasicModel[]): BasicModel[] {
@@ -63,7 +69,18 @@ export class RecipientFormComponent extends FormHelper implements OnInit {
 
   submit(formValue?: any): void {
     if (this.form.invalid) return
-    console.log(this.form.value)
+    this.savingRecipient = true
+
+    const recipientMapped = this.recipientService
+      .mappingData(this.form.value, this.bankList, this.bankAccountTypeList)
+
+    this.recipientService.createRecipient(recipientMapped)
+      .subscribe(
+        () => {
+          this.snackBar.open('Creado exitosamente!', 'Ok')
+          this.form.reset()
+        }, err => console.error(err)
+      ).add(() => this.savingRecipient = false)
   }
 
 }

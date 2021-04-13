@@ -14,7 +14,7 @@ export interface TypeUser extends BasicEntity {
 const UserAtt: ModelAttributes = {
    ...basicModelColumns,
    rut: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING(45),
       allowNull: false,
       unique: true
    },
@@ -48,12 +48,12 @@ export class User extends Model {
    static associate(): void {
       User.hasMany(BankAccount, {
          foreignKey: 'user_id',
-         as: 'userId',
+         as: 'bankAccountList',
       })
 
       BankAccount.belongsTo(BankAccount, {
          foreignKey: 'user_id',
-         as: 'bankAccount',
+         as: 'userId',
       })
    }
 }

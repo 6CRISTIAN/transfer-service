@@ -11,10 +11,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 /** Custom components */
 import { RecipientFormComponent } from './recipient-form.component';
+import { RecipientService } from 'src/app/services/recipient.service';
 
 
 @NgModule({
@@ -30,8 +32,10 @@ import { RecipientFormComponent } from './recipient-form.component';
     MatInputModule,
     MatIconModule,
     MatSnackBarModule,
-    MatButtonModule
+    MatButtonModule,
+    MatProgressSpinnerModule
   ],
+  providers: [RecipientService],
   exports: [
     RecipientFormComponent
   ]

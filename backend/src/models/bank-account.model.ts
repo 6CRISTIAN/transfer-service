@@ -12,7 +12,7 @@ const BankAccountAtt: ModelAttributes = {
    ...basicModelColumns,
    accountNumber: {
       field: 'account_number',
-      type: DataTypes.INTEGER,
+      type: DataTypes.BIGINT,
       allowNull: false
    },
    bank: {
@@ -35,17 +35,17 @@ export class BankAccount extends Model {
 
       BankAccountType.hasMany(BankAccount, {
          foreignKey: 'bank_account_type_id',
-         as: 'bankAccountTypeId'
+         as: 'bankAccountList'
       })
 
       BankAccount.hasMany(Transfer, {
          foreignKey: 'bank_account_id',
-         as: 'bankAccountId'
+         as: 'transferList'
       })
 
       Transfer.belongsTo(BankAccount, {
          foreignKey: 'bank_account_id',
-         as: 'transfer'
+         as: 'bankAccountId'
       })
    }
 }

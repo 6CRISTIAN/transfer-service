@@ -1,90 +1,100 @@
-<form [formGroup]="form" (ngSubmit)="submit()" class="container mt-4" [autocomplete]="false">
+<ng-container *ngIf="savingRecipient; else formTmp">
+  <div class="row center-xs mt-5">
+    <mat-spinner></mat-spinner>
+  </div>
+  <div class="row center-xs mt-4"><span>Creando destinatario</span></div>
+</ng-container>
 
-  <section class="row center-xs">
-    <mat-form-field class="col-xs-12 col-md-5 col-lg-4">
-      <mat-label>Rut</mat-label>
-      <input matInput type="text" formControlName="rut">
-      <button *ngIf="value('rut')" mat-button matSuffix mat-icon-button aria-label="Clear" (click)="setValue('rut','')">
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
+<ng-template #formTmp>
+  <form [formGroup]="form" (ngSubmit)="submit()" class="container mt-4" [autocomplete]="false">
 
-    <mat-form-field class="col-xs-12 col-md-5 col-lg-4">
-      <mat-label>Nombres</mat-label>
-      <input matInput type="text" formControlName="names">
-      <button *ngIf="value('names')" mat-button matSuffix mat-icon-button aria-label="Clear"
-        (click)="setValue('names','')">
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
-  </section>
+    <section class="row center-xs">
+      <mat-form-field class="col-xs-12 col-md-5 col-lg-4">
+        <mat-label>Rut</mat-label>
+        <input matInput type="text" formControlName="rut">
+        <button *ngIf="value('rut')" mat-button matSuffix mat-icon-button aria-label="Clear"
+          (click)="setValue('rut','')">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
 
-  <section class="row center-xs">
-    <mat-form-field class="col-xs-12 col-md-5 col-lg-4">
-      <mat-label>Apellidos</mat-label>
-      <input matInput type="text" formControlName="surnames">
-      <button *ngIf="value('surnames')" mat-button matSuffix mat-icon-button aria-label="Clear"
-        (click)="setValue('surnames','')">
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
+      <mat-form-field class="col-xs-12 col-md-5 col-lg-4">
+        <mat-label>Nombres</mat-label>
+        <input matInput type="text" formControlName="names">
+        <button *ngIf="value('names')" mat-button matSuffix mat-icon-button aria-label="Clear"
+          (click)="setValue('names','')">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </section>
 
-    <mat-form-field class="col-xs-12 col-md-5 col-lg-4">
-      <mat-label>Email</mat-label>
-      <input matInput type="text" formControlName="email">
-      <button *ngIf="value('email')" mat-button matSuffix mat-icon-button aria-label="Clear"
-        (click)="setValue('email','')">
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
-  </section>
+    <section class="row center-xs">
+      <mat-form-field class="col-xs-12 col-md-5 col-lg-4">
+        <mat-label>Apellidos</mat-label>
+        <input matInput type="text" formControlName="surnames">
+        <button *ngIf="value('surnames')" mat-button matSuffix mat-icon-button aria-label="Clear"
+          (click)="setValue('surnames','')">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
 
-  <section class="row center-xs">
-    <mat-form-field class="col-xs-12 col-md-5 col-lg-4">
-      <mat-label>Número telefónico</mat-label>
-      <input matInput type="text" formControlName="phoneNumber">
-      <button *ngIf="value('phoneNumber')" mat-button matSuffix mat-icon-button aria-label="Clear"
-        (click)="setValue('phoneNumber','')">
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
+      <mat-form-field class="col-xs-12 col-md-5 col-lg-4">
+        <mat-label>Email</mat-label>
+        <input matInput type="text" formControlName="email">
+        <button *ngIf="value('email')" mat-button matSuffix mat-icon-button aria-label="Clear"
+          (click)="setValue('email','')">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </section>
 
-    <mat-form-field class="col-xs-12 col-md-5 col-lg-4">
-      <mat-label>Banco</mat-label>
-      <input type="text" placeholder="Banco" aria-label="Number" matInput formControlName="bank"
-        [matAutocomplete]="auto">
-      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-        <mat-option *ngFor="let option of filteredBankList | async" [value]="option.name">
-          {{option.name}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-  </section>
+    <section class="row center-xs">
+      <mat-form-field class="col-xs-12 col-md-5 col-lg-4">
+        <mat-label>Número telefónico</mat-label>
+        <input matInput type="text" formControlName="phoneNumber">
+        <button *ngIf="value('phoneNumber')" mat-button matSuffix mat-icon-button aria-label="Clear"
+          (click)="setValue('phoneNumber','')">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
 
-  <section class="row center-xs">
-    <mat-form-field class="col-xs-12 col-md-5 col-lg-4">
-      <mat-label>Tipo de cuenta</mat-label>
-      <input type="text" placeholder="Tipo" aria-label="Number" matInput formControlName="bankAccountType"
-        [matAutocomplete]="auto">
-      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-        <mat-option *ngFor="let option of filteredBankAccountTypeList | async" [value]="option.name">
-          {{option.name}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
+      <mat-form-field class="col-xs-12 col-md-5 col-lg-4">
+        <mat-label>Banco</mat-label>
+        <input type="text" placeholder="Banco" aria-label="Number" matInput formControlName="bank"
+          [matAutocomplete]="autoBank">
+        <mat-autocomplete autoActiveFirstOption #autoBank="matAutocomplete">
+          <mat-option *ngFor="let option of filteredBankList | async" [value]="option.name">
+            {{option.name}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </section>
 
-    <mat-form-field class="col-xs-12 col-md-5 col-lg-4">
-      <mat-label>Nº De Cuenta</mat-label>
-      <input matInput type="number" formControlName="accountNumber">
-      <button *ngIf="value('accountNumber')" mat-button matSuffix mat-icon-button aria-label="Clear"
-        (click)="setValue('accountNumber','')">
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
-  </section>
+    <section class="row center-xs">
+      <mat-form-field class="col-xs-12 col-md-5 col-lg-4">
+        <mat-label>Tipo de cuenta</mat-label>
+        <input type="text" placeholder="Tipo" aria-label="Number" matInput formControlName="bankAccountType"
+          [matAutocomplete]="autoBankAccount">
+        <mat-autocomplete autoActiveFirstOption #autoBankAccount="matAutocomplete">
+          <mat-option *ngFor="let option of filteredBankAccountTypeList | async" [value]="option.name">
+            {{option.name}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
 
-  <section class="row center-xs mt-4">
-    <button class="col-xs-9 col-md-3 col-lg-2" type="submit" mat-raised-button color="primary">Crear</button>
-  </section>
+      <mat-form-field class="col-xs-12 col-md-5 col-lg-4">
+        <mat-label>Nº De Cuenta</mat-label>
+        <input matInput type="number" formControlName="accountNumber">
+        <button *ngIf="value('accountNumber')" mat-button matSuffix mat-icon-button aria-label="Clear"
+          (click)="setValue('accountNumber','')">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </section>
 
-</form>
+    <section class="row center-xs mt-4">
+      <button class="col-xs-9 col-md-3 col-lg-2" type="submit" mat-raised-button color="primary">Crear</button>
+    </section>
+
+  </form>
+</ng-template>
