@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/operators';
 import { BasicModel } from '../shared/models/interface/basic-model.interface';
 import { Recipient } from '../shared/models/interface/recipient.interface';
-import { TransferCreate } from '../shared/models/interface/tranfer.interface';
+import { TransferCreate, TransferView } from '../shared/models/interface/tranfer.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +32,16 @@ export class ApiService {
 
   createTransfer(transfer: TransferCreate): Observable<TransferCreate> {
     return this.http.post<TransferCreate>('/api/recipient', transfer)
+  }
+
+  getTransferList(): Observable<TransferView[]> {
+    return this.http.get<any>('/api/transfer')
+      .pipe(map(list => list.map(item => ({
+        recipientName: item.bankAccount.user.names + ' ' + item.bankAccount.user.names,
+        rut: item.bankAccount.user.rut,
+        amount: item.amount,
+        accountType: item.bankAccount.bankAccountType.name,
+        bankName: item.bankAccount.bank.name
+      }))))
   }
 }
